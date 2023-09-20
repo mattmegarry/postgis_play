@@ -1,0 +1,5 @@
+CREATE EXTENSION IF NOT EXISTS postgis;
+wget https://download.geofabrik.de/europe/great-britain/england-latest.osm.pbf
+wget https://raw.githubusercontent.com/openstreetmap/osm2pgsql/master/default.style
+osm2pgsql -d england_gis england-latest.osm.pbf -S default.style
+CREATE INDEX planet_osm_point_geom_idx ON planet_osm_point USING GIST (way);
